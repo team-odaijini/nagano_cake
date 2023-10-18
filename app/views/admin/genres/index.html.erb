@@ -1,24 +1,52 @@
 
-<p>ジャンル一覧・追加</p>
-
-<%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
- <td><%= f.label :"ジャンル名" %></td>
- <td><%= f.text_field :name %></td>
- <td><%= f.submit "新規登録"%></td>
-<% end %>
-
-<div class="container">
- <div class="row">
-    <table class="table table-striped">
-    <div class="col-lg-4">    
-      <p>ジャンル<p>
-      <tr>
-       <% @genres.each do |genre| %>
-       <td><%= genre.name %></td>
-       <td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn-success" %></td>
-      </tr>
-      <% end %>
-    </table>
+<section class="genre">
+   <div class="genre__title">
+    <p class="genre__title__text">ジャンル一覧・追加</p>
+  </div>
+  <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
+   <td><%= f.label :"ジャンル名" %></td>
+   <td><%= f.text_field :name %></td>
+   <td><%= f.submit "新規登録", class: "genre__create__button"%></td>
+  <% end %>
+ 
+  <div class="container">
+   <div class="row">
+      <table class="table table-striped">
+      <div class="col-lg-4">    
+        <p>ジャンル<p>
+        <tr>
+         <% @genres.each do |genre| %>
+         <td class="genre__created__name"><%= genre.name %></td>
+         <td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn-success" %></td>
+        </tr>
+        <% end %>
+      </table>
+     </div>    
    </div>    
- </div>    
-</div>
+  </div>
+ </section>
+ <style>
+ .genre{
+     width: 100%;
+     margin: 0;
+     padding: 0;
+   }
+ .genre__title{
+     width: 30%;
+     background-color: antiquewhite;
+   }
+  .genre__title__text{
+     text-align: center;
+   }
+   .genre__create__button{
+    background-color: white;
+    transition: 1.0s;
+   }
+   .genre__create__button:hover{
+    background-color: black;
+    color: white;
+   }
+   .genre__created__name{
+    margin: 30%;
+   }
+ </style>
