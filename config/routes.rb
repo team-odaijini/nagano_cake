@@ -10,25 +10,25 @@ Rails.application.routes.draw do
   namespace :admin do
    resources :customers, only: [:index, :show, :edit, :update]
    resources :genres, only: [:index, :create, :edit, :update]
-   resources :items, only: [:new, :create, :show, :edit, :update]
+   resources :items, only: [:index, :new, :create, :show, :edit, :update]
     get 'homes/top'
   end
-  
+
   scope module: :public do
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
    resources :orders, only: [:new, :create, :index, :show]
     get 'orders/confirm'
     get 'orders/thanks'
-  
+
    resources :cart_items, only: [:index, :update, :destroy, :create]
     get 'cart_items/destroy_all'
- 
-   resources :customers, only: [:show, :edit, :update] 
+
+   resources :customers, only: [:show, :edit, :update]
     get 'customers/leave'
     get 'customers/withdraw'
-  
+
    resources :items, only: [:index, :show]
- 
+
     root :to => 'homes#top'
     get 'homes/about'
   end

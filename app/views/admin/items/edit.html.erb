@@ -1,2 +1,38 @@
-<h1>Admin::Items#edit</h1>
-<p>Find me in app/views/admin/items/edit.html.erb</p>
+<h1>商品編集</h1>
+
+
+      <table>
+        <%= form_with model: @item, url:admin_item_path(@item.id), method: :patch do |f| %> <!--ここでのpathは表示するページではなく、updateアクションのcontrollerでデータの保存をする処理に飛んでいる-->
+        <tr>
+          <td>商品画像</td>
+          <td><%= f.file_field :image, accept: "image/*" %></td>
+        </tr>
+        <tr>
+          <td>商品名</td>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <td>商品説明</td>
+          <td><%= f.text_area :explanation %></td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+          <td><%= f.select :genre_id, @genres.map { |genre| [genre.name, genre.id] },
+            { include_blank: '--選択してください--'} %></td>
+        </tr>
+        <tr>
+          <td>税抜価格</td>
+          <td><%= f.text_field :excluding_tax %>円</td>
+        </tr>
+        <tr>
+          <td>販売ステータス</td>
+          <td><%= f.radio_button :is_sale_status, :true %>
+              <%= f.label :is_sale_status, "販売中", {value: :true} %>
+              <%= f.radio_button :is_sale_status, :false %>
+              <%= f.label :is_sale_status, "販売停止中", {value: :false} %></td>
+        </tr>
+        <tr>
+          <td><%= f.submit '変更を保存' %></td>
+        </tr>
+        <% end %>
+      </table>

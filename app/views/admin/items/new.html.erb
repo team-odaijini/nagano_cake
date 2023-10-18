@@ -26,8 +26,10 @@
         </tr>
         <tr>
           <td>販売ステータス</td>
-          <td><%= f.radio_button :is_sale_status, checked: false %>販売中
-            <%= f.radio_button :is_sale_status, checked: true %>販売停止中</td>
+          <td><%= f.radio_button :is_sale_status, :true %>
+              <%= f.label :is_sale_status, "販売中", {value: :true} %>
+              <%= f.radio_button :is_sale_status, :false %>
+              <%= f.label :is_sale_status, "販売停止中", {value: :false} %></td>
         </tr>
         <tr>
           <td><%= f.submit '新規登録' %></td>
