@@ -20,6 +20,6 @@ class Admin::CustomersController < ApplicationController
   end
   private
   def customer_param
-    params.require(:customer).premit(:famiy_name, :fisrt_name, :family_name_kana, :fisrt_name_kana, :adress, :post_code, :telephone_number, :email, :password, :is_deleted)
+    params.require(:customer).premit(:famiy_name, :fisrt_name, :family_name_kana, :fisrt_name_kana, :address, :post_code, :telephone_number, :email, :password, :is_deleted)
   end
 end

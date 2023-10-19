@@ -6,7 +6,7 @@ class Customer < ApplicationRecord
          
          has_many :cart_items
          has_many :orders
-         has_many :address
+         has_many :addresses
          
          #validates :family_name, presence: true
          #validates :family_name_kana, presence: true
