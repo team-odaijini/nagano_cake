@@ -9,15 +9,15 @@
    <td><%= f.submit "新規登録", class: "genre__create__button"%></td>
   <% end %>
  
-  <div class="container">
-   <div class="row">
-      <table class="table table-striped">
+ 
+   <div class="col-xs-8 col-xs-offset-2">
+    <table class="table table-hover table-inverse table-bordered">
       <div class="col-lg-4">    
         <p>ジャンル<p>
         <tr>
          <% @genres.each do |genre| %>
          <td class="genre__created__name"><%= genre.name %></td>
-         <td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn-success" %></td>
+         <td><%= link_to "編集する", edit_admin_genre_path(genre.id) %></td>
         </tr>
         <% end %>
       </table>
