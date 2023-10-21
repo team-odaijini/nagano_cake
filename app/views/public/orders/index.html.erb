@@ -1,18 +1,27 @@
 <h1>注文履歴一覧</h1>
-<p>注文日</p>
-<p>配送先</p>
-<p>注文商品</p>
-<p>注文金額</p>
-<p>ステータス</p>
-<p>注文詳細</p>
+  <thead>
+    <th>注文</th>
+    <th>配送先</th>
+    <th>注文商品</th>
+    <th>注文金額</th>
+    <th>ステータス</th>
+    <th>注文詳細</th>
+  </thead>
 
-<%= odres.create_at.strftime('%Y/%m/%d')%>
-<%= odres.post_code %>
-<%= odres.residence %>
-<%= odres.name %>
+<% @odres.each do |oredr| %>
+<%= oredr.create_at.strftime('%Y/%m/%d') %>
+<%= oredr.post_code %>
+<%= oredr.residence %>
+<%= oredr.name %>
+<% end %>
 
+<% oredr.order_details.each do |oredr_deteils| %>
+ <%= order_details.item.name %>
+<% end %>
 
-
+<%= oredr.price_all.to_s(:delimited)+"円" %>
+<%= oredr.status %>
+<%= link_to "表示する", order_path(oredr.id) %>
 
 
 
