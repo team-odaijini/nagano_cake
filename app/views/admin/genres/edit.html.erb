@@ -1,6 +1,27 @@
-<p>ジャンル編集</p>
+<div class="genre__title">
+  <p class="genre__title__text">ジャンル編集</p>
+</div>
 <%= form_with model: @genre, url: admin_genre_path, method: :patch do |f| %>
  <%= f.label :"ジャンル名" %>
  <%= f.text_field :name %>
- <%= f.submit "変更を保存" %>
+ <%= f.submit "変更を保存", class: "genre__create__button" %>
 <% end %>
+
+
+ <style>
+ .genre__title{
+     width: 30%;
+     background-color: antiquewhite;
+  }
+ .genre__title__text{
+     text-align: center;
+  }
+ .genre__create__button{
+    background-color: white;
+    transition: 1.0s;
+  }
+  .genre__create__button:hover{
+    background-color: black;
+    color: white;
+   }
+ </style>
