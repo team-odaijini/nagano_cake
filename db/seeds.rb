@@ -11,22 +11,22 @@ Genre.create!(id: 2, name: 'プリン')
 Genre.create!(id: 3, name: '焼き菓子')
 
 Admin.create!(
-    email: "test@test",
-    password: "admintest",
+    email: 'test@test',
+    password: '123456',
     )
     
-#Customer.create!(
-#      id: 999,
-#      family_name: "孫",
-#      first_name: "悟空",
-#      family_name_kana: "ソン",
-#      first_name_kana: "ゴクウ",
-#      address: "パオズ山",
-#      post_cord: "59595959",
-#      telephone_number: "000000000",
-#      email: "son@goku",
-#      password: "595959",
-#    )    
+Customer.create!(
+      id: 999,
+      family_name: "令和",
+      first_name: "昭子",
+      family_name_kana: "レイワ",
+      first_name_kana: "ショウコ",
+      address: "東京",
+      post_cord: "平成明治江戸",
+      telephone_number: "000000000",
+      email: "test@test",
+      password: "098765",
+    )    
     
 10.times do |n|
     Customer.create!(
@@ -34,7 +34,7 @@ Admin.create!(
       first_name: "花子#{n + 1}",
       family_name_kana: "ヤマダ",
       first_name_kana: "ハナコ",
-    #  address: "東京都千代田区永田町1-7-1",
+      address: "東京都千代田区永田町1-7-1",
       post_cord: "0000000",
       telephone_number: "123456789",
       email: "yamada#{n + 1}@tset.com",
