@@ -9,11 +9,16 @@
     </div>
 
     <div class="col-lg-8">
-      <h2><b><%= @item.name %></h2>
+      <h2><b><%= @item.name %></b></h2>
       <p><%= @item.explanation %></p>
       <h4><big>¥ <%= @item.add_tax_excluding_tax.to_s(:dalimited) %></big><font size="3"> (税込)</font></h4>
-      <p>個数選択(仮) カートに入れる(仮)</p>
-    </div>
 
+      <%= form_with model: @cart_item, url: cart_items_path do |f| %>
+      <span><%= f.select :quantity, *[1..10], class: 'item' %></span>
+      <%= f.hidden_field :item_id, :value => Item.find(params[:id]).id %>
+      <span><%= f.submit 'カートに入れる', class: 'btn btn-success btn-sm' %></span>
+      <% end %>
+
+    </div>
   </div>
 </div>
