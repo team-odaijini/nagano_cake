@@ -4,13 +4,13 @@
       <h4 class="mb-5 text-color col-3 text-center">新規会員登録</h4>
 
         <%= form_for(resource, as: resource_name, url: customer_registration_path) do |f| %>
-          　　<div><%= render 'layouts/error_message', model: f.object %></div>
+  
           　　
           <div class="sign_up-pages col-12">
             <div class="field mb-1">
             <%= f.label :"名前　　　　　　　　　　　(姓)", class: 'col-3' %>
             
-            <%= f.text_field :last_name, autofocus: true, class: 'rounded', placeholder: "令和" %>
+            <%= f.text_field :family_name, autofocus: true, class: 'rounded', placeholder: "令和" %>
             <%= f.label :"　(名)　", class: '' %>
             <%= f.text_field :first_name, autofocus: true, class: 'rounded', placeholder: "道子" %>
           </div>
@@ -18,7 +18,7 @@
           <div class="field mb-1">
             <%= f.label :"フリガナ　　　　　　　　　(ｾｲ)", class: 'col-3' %>
             
-            <%= f.text_field :last_name_kana, autofocus: true, class: 'rounded', placeholder: "レイワ" %>
+            <%= f.text_field :family_name_kana, autofocus: true, class: 'rounded', placeholder: "レイワ" %>
             <%= f.label :"　(ﾒｲ)　", class: '' %>
             <%= f.text_field :first_name_kana, autofocus: true, class: 'rounded', placeholder: "ミチコ" %>
           </div>
@@ -30,7 +30,7 @@
           
           <div class="field mb-1">
             <%= f.label :"郵便番号(ハイフンなし)", class: 'col-3' %>
-            <%= f.text_field :postcode, autofocus: true, class: 'rounded', placeholder: "0000000" %>
+            <%= f.text_field :post_code, autofocus: true, class: 'rounded', placeholder: "0000000" %>
           </div>
           
           <div class="field mb-1">
@@ -40,7 +40,7 @@
           
           <div class="field mb-1">
             <%= f.label :"電話番号(ハイフンなし)", class: 'col-3' %>
-            <%= f.text_field :phone_number, autofocus: true, class: 'rounded', placeholder: "00000000000" %>
+            <%= f.text_field :telephone_number, autofocus: true, class: 'rounded', placeholder: "00000000000" %>
           </div>
           
           

@@ -33,7 +33,7 @@
                         <% end %>
                       </li>
                       <li class="nav-item">
-                        <%= link_to admin_path  do %>
+                        <%= link_to admin_homes_top_path  do %>
                           <i class="fas fa-clipboard-list">注文履歴一覧</i>
                         <% end %>
                       </li>
@@ -51,13 +51,10 @@
                     <!--customersログイン時のヘッダー-->
                     <% elsif customer_signed_in? %>
                       <li class="nav-item">
-                        ようこそ <%= link_to customers_path do %>
-                        <strong><%= current_customer.last_name %><%= current_customer.first_name %></strong>
-                        <% end %>
-                         さん
+                        ようこそ  <strong><%= current_customer.family_name %><%= current_customer.first_name %></strong>さん
                       </li>
                       <li class="nav-item">
-                        <%= link_to customers_path do %>
+                        <%= link_to customer_path(current_customer.id) do %>
                           <i class="fas fa-user-circle">マイページ</i>
                         <% end %>
                       </li>
