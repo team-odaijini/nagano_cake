@@ -1,2 +1,12 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<h1>ショッピングカート</h1>
+<li class="list-none">
+    <%= cart_item.ite.name %>
+    <%= cart_item.add_tax_excluding_tax.to_s(:dalimited) %>
+    <%= form_with(url: cart_item_path, method: :post,local: true) do |f| %>
+    <%= f.hidden_field :item_id, value: cart_item.item.id %>
+    <%= f.number_field :quantity ,value: cart_item.quantity%>
+    <%= f.submit "更新", class: "" %>
+    <% end %>
+    <%= button_to "削除", cart_items_destroy_all_path(item_id: cart_item.item.id), method: :delete,
+                                       data: { confirm: "商品を削除しますか？" } %>
+</li>
