@@ -5,10 +5,11 @@
 
 <div class="container">
   <div class="row">
-
+  
     <% @items.each do |item| %>
+      
       <div class="col-lg-3">
-
+        
         <div><%= link_to item_path(item.id) do %>
              <%= image_tag item.get_image(160,160) %>
              <% end %>
@@ -16,10 +17,8 @@
         <div><%=item.name %></div>
         <div>¥ <%= item.add_tax_excluding_tax.to_s(:dalimited) %></div>
       </div>
-
+      
     <% end %>
-
-
-
+    
   </div>
 </div>
