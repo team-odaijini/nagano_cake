@@ -1,6 +1,6 @@
 <h1>ショッピングカート</h1>
 <li class="list-none">
-    <%= cart_item.ite.name %>
+    <%= @cart_items.item.name %>
     <%= cart_item.add_tax_excluding_tax.to_s(:dalimited) %>
     <%= form_with(url: cart_item_path, method: :post,local: true) do |f| %>
     <%= f.hidden_field :item_id, value: cart_item.item.id %>
