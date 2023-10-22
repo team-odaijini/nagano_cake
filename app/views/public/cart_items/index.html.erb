@@ -1,12 +1,26 @@
 <h1>ショッピングカート</h1>
-<li class="list-none">
-    <%= @cart_items.item.name %>
-    <%= cart_item.add_tax_excluding_tax.to_s(:dalimited) %>
-    <%= form_with(url: cart_item_path, method: :post,local: true) do |f| %>
-    <%= f.hidden_field :item_id, value: cart_item.item.id %>
-    <%= f.number_field :quantity ,value: cart_item.quantity%>
-    <%= f.submit "更新", class: "" %>
-    <% end %>
-    <%= button_to "削除", cart_items_destroy_all_path(item_id: cart_item.item.id), method: :delete,
-                                       data: { confirm: "商品を削除しますか？" } %>
-</li>
+    <tr>
+      <td>商品名</td>
+      <td>単価（税込）</td>
+      <td>数量</td>
+      <td>小計</td>
+      <td></td>
+    </tr>
+
+<% @cart_items.each do |cart_item| %>
+
+  <%= image_tag cart_item.item.get_image(50,50) %>
+  <%= cart_item.item.name %>
+
+  <%= (cart_item.item.excluding_tax * 1.10).floor.to_s(:delimited) %>
+
+   <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch do |f| %>
+     <%= f.select :quantity, *[1..99], class: 'item' %>
+     <%= f.submit"変更" %>
+   <% end %>
+
+  <%= ((cart_item.item.excluding_tax * 1.10).floor * cart_item.quantity).to_s(:delimited) %>
+
+  <%= link_to "削除", cart_item_path(cart_item) %>
+
+<% end %>
