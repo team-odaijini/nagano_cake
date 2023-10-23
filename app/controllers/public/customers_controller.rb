@@ -1,10 +1,7 @@
 class Public::CustomersController < ApplicationController
-  
-  
   def show
       @customer = current_customer
   end
-  
   def edit
       @customer = current_customer
   end
@@ -24,9 +21,9 @@ class Public::CustomersController < ApplicationController
       reset_session
       redirect_to root_path
   end
-  
+
  private
   def customer_params
-     params.require(:customer).permit(:famiy_name, :fisrt_name, :family_name_kana, :fisrt_name_kana, :adress, :post_code, :telephone_number, :email )
+     params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :address, :post_code, :telephone_number, :email )
   end
 end
