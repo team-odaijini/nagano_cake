@@ -6,6 +6,7 @@ class Public::AddressesController < ApplicationController
 
   def create
     @address = Address.new(address_params)
+  #  byebug
     @address.save
     redirect_to addresses_path
   end
