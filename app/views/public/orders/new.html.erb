@@ -6,7 +6,7 @@
   <div class="form-group">
     <div class="lead mb-2">支払い方法</div>
     <%= f.radio_button :payment_select, 0 %>
-    クレジットカード　　
+    クレジットカード　
     <%= f.radio_button :payment_select, 1 %>
     銀行振込
     </div>
@@ -16,7 +16,7 @@
     <% if current_user.address %>
       
         <%= f.radio_button :address_select, 0 %>
-        <%= f.label :ご自身の住所 %>　　
+        <%= f.label :ご自身の住所 %>
         <%= current_user.address %>
       
     <% end %>
