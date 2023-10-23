@@ -17,7 +17,7 @@
         <tr>
          <% @genres.each do |genre| %>
          <td class="genre__created__name"><%= genre.name %></td>
-         <td><%= link_to "編集する", edit_admin_genre_path(genre.id) %></td>
+         <td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: "edit_button" %></td>
         </tr>
         <% end %>
       </table>
@@ -41,6 +41,7 @@
    .genre__create__button{
     background-color: white;
     transition: 1.0s;
+    
    }
    .genre__create__button:hover{
     background-color: black;
@@ -48,5 +49,13 @@
    }
    .genre__created__name{
     margin: 30%;
+   }
+   .edit_button{
+    padding: 3px 8px ;
+    border-radius: 5px;
+    background-color: #3399FF;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
    }
  </style>

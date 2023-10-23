@@ -2,14 +2,17 @@
 
 <p>登録情報</p>
  
+   <%= link_to "編集する", edit_customer_path  %>
+
+
 <tr>
   <td>氏名</td>
-  <td><%= @customer.family_name %><%@customer.first_name%></td>
+  <td><%= @customer.family_name%><%=@customer.first_name %></td>
 </tr>
 
 <tr>
   <td>フリガナ</td>
-  <td><%= @customer.family_name_kana %><%@customer.first_name_kana%></td>
+  <td><%= @customer.family_name_kana%><%=@customer.first_name_kana %></td>
 </tr>
 
 <tr>
@@ -33,4 +36,8 @@
 </tr>
 
 
-   
+   <p>配送先</p>
+   <%= link_to "一覧を見る", addresses_path  %>
+
+   <p>注文履歴</p>
+   <%= link_to "一覧を見る", orders_path  %>
