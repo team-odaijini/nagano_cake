@@ -1,40 +1,51 @@
-<p>会員情報編集</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h4 class="mb-5 text-color col-3 text-center">会員情報編集</h4>
 
-<%= form_with model: @customer, url:customer_path, method: :patch do |f| %>
+      <%= form_with model: @customer, url:customer_path, method: :patch do |f| %>
 
- <div>
-   <%= f.label :"氏名" %>
-   <%= f.text_field :family_name %>
-   <%= f.text_field :first_name %>
- </div>
- 
- <div>
-   <%= f.label :"フリガナ" %>
-   <%= f.text_field :family_name_kana %>
-   <%= f.text_field :first_name_kana %>
- </div>
- 
- <div>
-   <%= f.label :"郵便番号" %>
-   <%= f.text_field :post_code %>
- </div>
- 
- <div>
-   <%= f.label :"住所" %>
-   <%= f.text_field :address %>
- </div>
- 
- <div>
-   <%= f.label :"電話番号" %>
-   <%= f.text_field :telephone_number %>
- </div>
- 
- <div>
-   <%= f.label :"メールアドレス" %>
-   <%= f.text_field :email %>
- </div>
- 
- <%= f.submit "編集内容を保存" %>
- 
- <!--%= link_to "退会する", customer_customers_leave_path %>
-<% end %>
+      <div class="sign_up-pages col-12">
+        <div class="field-mb-1">
+          <%= f.label :"氏名", class: 'col-3' %>
+          <%= f.text_field :family_name, class: 'rounded' %>
+          <%= f.text_field :first_name, class: 'rounded' %>
+        </div>
+
+        <div class="field-mb-1">
+          <%= f.label :"フリガナ", class: 'col-3' %>
+          <%= f.text_field :family_name_kana, class: 'rounded' %>
+          <%= f.text_field :first_name_kana, class: 'rounded' %>
+        </div>
+
+        <div class="field-mb-1">
+          <%= f.label :"郵便番号", class: 'col-3' %>
+          <%= f.text_field :post_code, class: 'rounded' %>
+        </div>
+
+        <div class="field-mb-1">
+          <%= f.label :"住所", class: 'col-3' %>
+          <%= f.text_field :address, class: 'col-5 rounded' %>
+        </div>
+
+        <div class="field-mb-1">
+          <%= f.label :"電話番号", class: 'col-3' %>
+          <%= f.text_field :telephone_number, class: 'rounded' %>
+        </div>
+
+        <div class="field-mb-1">
+          <%= f.label :"メールアドレス", class: 'col-3' %>
+          <%= f.text_field :email, class: 'rounded' %>
+        </div>
+
+        <div class="actions">
+          <%= f.label :"　", class: 'col-3' %>
+          <%= f.submit "編集内容を保存", class: 'btn btn-success col-2' %>
+          <%= f.label :"　", class: 'col-4' %>
+          <%= link_to "退会する", customer_customers_leave_path(@customer.id), class: 'btn btn-danger col-2' %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
