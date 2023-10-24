@@ -19,7 +19,7 @@ class Admin::CustomersController < ApplicationController
     redirect_to admin_customer_path
   end
   private
-  def customer_param
-    params.require(:customer).premit(:family_name, :first_name, :family_name_kana, :first_name_kana, :address, :post_code, :telephone_number, :email, :password, :is_deleted)
+  def customer_params
+    params.require(:customer).permit(:family_name, :first_name, :family_name_kana, :first_name_kana, :address, :post_code, :telephone_number, :email, :password, :is_deleted)
   end
 end
