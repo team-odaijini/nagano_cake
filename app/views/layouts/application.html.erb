@@ -17,7 +17,7 @@
         <div class="row">
           <ul class="navbar-nav ml-auto">
 
-              <h2>Logo</h2>
+              <h2>Nagano_Cafe</h2>
 
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
@@ -50,48 +50,48 @@
 
                     <!--customersログイン時のヘッダー-->
                     <% elsif customer_signed_in? %>
-                      <li class="nav-item">
+                      <li class="col-4 text-center">
                         ようこそ  <strong><%= current_customer.family_name %><%= current_customer.first_name %></strong>さん
                       </li>
-                      <li class="nav-item">
-                        <%= link_to customer_path(current_customer.id) do %>
+                      <li class="col-3">
+                        <%= link_to customer_path(current_customer.id), class:'btn btn-outline-secondary' do %>
                           <i class="fas fa-user-circle">マイページ</i>
                         <% end %>
                       </li>
-                      <li class="nav-item">
-                        <%= link_to  items_path do %>
+                      <li class="col-3">
+                        <%= link_to  items_path, class:'btn btn-outline-secondary' do %>
                           <i class="fas fa-cookie-bite">商品一覧</i>
                         <% end %>
                       </li>
-                      <li class="nav-item">
-                        <%= link_to cart_items_path do %>
+                      <li class="col-3">
+                        <%= link_to cart_items_path, class:'btn btn-outline-secondary' do %>
                           <i class="fas fa-shopping-cart">カート</i>
                         <% end %>
                       </li>
-                      <li class="nav-item">
-                        <%= link_to destroy_customer_session_path, method: :delete do %>
+                      <li class="col-3">
+                        <%= link_to destroy_customer_session_path, method: :delete, class:'btn btn-outline-secondary' do %>
                           <i class="fas fa-sign-out-alt">ログアウト</i>
                         <% end %>
                       </li>
                     <% else %>
                     <!--ログイン前時のヘッダー-->
-                      <li class="nav-item">
-                        <%= link_to homes_about_path do %>
+                      <li class="col-4">
+                        <%= link_to homes_about_path, class:'btn btn-outline-secondary' do %>
                           <i class="fas fa-store-alt">About</i>
                         <% end %>
                       </li>
-                      <li class="nav-item">
-                        <%= link_to items_path do %>
+                      <li class="col-4">
+                        <%= link_to items_path, class:'btn btn-outline-secondary' do %>
                           <i class="fas fa-cookie-bite">商品一覧</i>
                         <% end %>
                       </li>
-                      <li class="nav-item">
-                        <%= link_to new_customer_registration_path, data: {"turbolinks" => false} do %>
+                      <li class="col-4">
+                        <%= link_to new_customer_registration_path, data: {"turbolinks" => false}, class:'btn btn-outline-secondary' do %>
                           <i class="fas fa-user-plus">新規登録</i>
                         <% end %>
                       </li>
-                      <li class="nav-item">
-                        <%= link_to  new_customer_session_path do%>
+                      <li class="col-4">
+                        <%= link_to  new_customer_session_path, class:'btn btn-outline-secondary' do%>
                           <i class="fas fa-user">ログイン</i>
                         <% end %>
                       </li>
