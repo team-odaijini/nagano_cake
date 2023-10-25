@@ -87,7 +87,7 @@ class Public::OrdersController < ApplicationController
         end
       end
       @cart_items.destroy_all
-      redirect_to complete_orders_path
+      redirect_to order_orders_thanks _path
     else
       render :items
     end
@@ -99,6 +99,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
+     @order = Order.find(params[:id])
+      @order_details= OrderDetail.where(order_id: @order.id)
   end
 end
