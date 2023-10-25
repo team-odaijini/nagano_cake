@@ -10,18 +10,18 @@
       </div>
       <br>
           <%= form_with model:@address, url:addresses_path, method: :post do |f| %>
-           <div>
+           <div class="address__create__form1">
              <td><%= f.label :"郵便番号(ハイフンなし)" %></td><br>
              <td><%= f.text_field :post_code, :placeholder => "0000000" %></td>
            </div>
 
-           <div>
+           <div class="address__create__form1">
              <td><%= f.label :"住所" %></td><br>
              <td><%= f.text_field :residence, :placeholder => "東京都千代田区永田町１−７−１",size: 50 %></td>
            </div>
 
 
-          <div>
+          <div class="address__create__form1">
              <td><%= f.label :"宛名" %></td><br>
              <td><%= f.text_field :name, :placeholder => "dmm" %></td><br>
              <br>
@@ -88,4 +88,7 @@
     color: white;
 }
 
+ .address__create__form1{
+     margin: 3% 0% 0% 0%;
+   }
 </style>
