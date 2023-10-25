@@ -3,29 +3,31 @@
   <p class="address__title__text">配送先編集集</p>
 </div>
 <%= form_with model: @address, url: address_path, local: true, method: :patch do |f| %>
-   <div>
-     <%= f.label :"郵便番号(ハイフンなし)" %><br>
-     <%= f.text_field :post_code %>
-   </div>     
-   
-   <div>
-     <%= f.label :"住所" %><br>
-     <%= f.text_field :residence %>
-    </div>
-    
-    <div>
-     <%= f.label :"宛名" %><br>
-     <%= f.text_field :name %>
-    </div>
+<div class="address__create__form">
+       <div  class="address__create__form1">
+         <%= f.label :"郵便番号(ハイフンなし)" %><br>
+         <%= f.text_field :post_code, :placeholder => "0000000" %>
+       </div>     
+       
+       <div  class="address__create__form1">
+         <%= f.label :"住所" %><br>
+         <%= f.text_field :residence, :placeholder => "東京都千代田区永田町１−７−１", size:50 %>
+        </div>
+        
+        <div  class="address__create__form1">
+         <%= f.label :"宛名" %><br>
+         <%= f.text_field :name, :placeholder => "dmm" %>
+        </div>
     <br>
      <%= f.submit "変更内容を保存", class: "address__create__button" %>
 <% end %>
-
+</div>
 
  <style>
  .address__title{
      width: 30%;
      background-color: antiquewhite;
+     margin: 0% 0% 0% 5%;
   }
  .address__title__text{
      text-align: center;
@@ -37,5 +39,11 @@
   .address__create__button:hover{
     background-color: black;
     color: white;
+   }
+  .address__create__form{
+    margin: 0% 0% 0% 5%;
+   }
+   .address__create__form1{
+     margin: 3% 0% 0% 0%;
    }
  </style>
