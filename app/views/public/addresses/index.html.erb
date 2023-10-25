@@ -43,9 +43,9 @@
 
            <% @addresses.each do |address| %>
              <tr>
-               <td><% address.post_code %></td>
-               <td><% address.residence %></td>
-               <td><% address.name %></td>
+               <td><%= address.post_code %></td>
+               <td><%= address.residence %></td>
+               <td><%= address.name %></td>
                <td><%= link_to "編集する", edit_address_path(address.id) %></td>
                <td><%= link_to "削除する", address_path(address.id), method: :delete %></td>
              </tr>
