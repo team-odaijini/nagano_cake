@@ -47,6 +47,7 @@
                           <i class="fas fa-sign-out-alt">ログアウト</i>
                         <% end %>
                       </li>
+                      
 
                     <!--customersログイン時のヘッダー-->
                     <% elsif customer_signed_in? %>
@@ -96,6 +97,12 @@
                         <% end %>
                       </li>
                     <% end %>
+                    <p>
+                      <%= form_with method: :get, local: :ture do |f| %>
+                       <%= f.text_field :search, placeholder: "search" %>
+                       <%= f.submit "検索" %>
+                      <% end %>
+                    </p>
               </div>
             </ul>
           </div>
