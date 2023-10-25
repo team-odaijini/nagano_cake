@@ -31,13 +31,11 @@
           <td><%= link_to item.name, admin_item_path(item.id) %></td>
           <td><%= item.excluding_tax %></td>
           <td><%= item.genre.name %></td>
-          <td>
             <% if item.is_sale_status == true %>
-              販売中
+              <td class="text-success"><b>販売中</b></td>
             <% else item.is_sale_status != true %>
-              販売停止中
+              <td class="text-secondary"><b>販売停止中</b></td>
             <% end %>
-          </td>
         </tr>
         <% end %>
       </table>
