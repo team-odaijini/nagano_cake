@@ -1,0 +1,39 @@
+<div class="genre_search">
+
+     <div  class="genre__index">   
+        <div>
+            <div>ジャンル検索</div>
+        </div>
+        
+        <%= form_with url: genre_search_path, method: :get do |f| %>
+        <% @genres.each do |genre| %>
+          <div class="b">
+            <div><%= link_to genre.name, genre_search_path(genre_id: genre.id), class: "genre__button", method: :get %></div>
+          </div>
+        <% end %>
+      <% end %>
+     </div>  
+
+    
+</div>
+
+
+<style>
+ .genre__button{
+   text-decoration: none;
+  }
+  .genre__index{
+     display: inline-block;
+     flex-direction: column;
+     padding: 2%;
+     margin: 2%;
+     border: 4px solid #00bfff;
+     border-style: dotted;
+  }
+  .genre__index a:visited{
+      color: black;
+  }
+  .b{
+      padding: 2%;
+  }
+</style>

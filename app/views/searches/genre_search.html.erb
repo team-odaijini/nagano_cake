@@ -1,0 +1,21 @@
+
+
+<p>検索結果</p>
+
+<div>
+    <% @items.each do |item| %>
+     <%= link_to item_path(item.id),class:"item__name" do %>
+      <%= image_tag item.get_image(100,100) %>
+     <% end %>
+     <%= item.name %>
+     ¥<%= item.add_tax_excluding_tax.to_s(:dalimited) %>
+    <% end %>
+</div>
+
+
+<style>
+  .item__name{
+      text-decoration: none;
+  }
+
+</style>

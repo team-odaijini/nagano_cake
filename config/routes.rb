@@ -26,28 +26,28 @@ Rails.application.routes.draw do
 
   scope module: :public do
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-
+   
    resources :orders, only: [:new, :create, :index, :show] do
     get 'orders/confirm'
     get 'orders/thanks'
-   end
+   end    
 
    resources :cart_items, only: [:index, :update, :destroy, :create] do
     collection do
-      delete 'destroy_all'
+     delete 'destroy_all'
     end
-   end
+   end    
 
    resources :customers, only: [:show, :edit, :update] do
     get 'customers/leave'
     get 'customers/withdraw'
-   end
+   end    
 
    resources :items, only: [:index, :show]
 
     root :to => 'homes#top'
     get 'homes/about'
   end
-
+    get "/genre/search" => "searches#genre_search"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
  end
