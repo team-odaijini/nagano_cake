@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-  
+
   def new
     @order = Order.new
   end
@@ -8,15 +8,15 @@ class Public::OrdersController < ApplicationController
       @cart_items = CartItem.where(customer_id: current_customer.id)
       @postage = 800 #送料は800円で固定
       @selected_payment_method = params[:order][:payment_method]
-      
+
       #以下、商品合計
       ary = []
       @cart_items.each do |cart_item|
-        ary << cart_item.item.price*cart_item.quantity
+        ary << (cart_item.item.excluding_tax * 1.10).floor * cart_item.quantity
       end
-      @cart_items_price = ary.sum
-      
-      @price_all = @postage + @cart_items_price
+      @cart_items_price = ary.sum #商品合計
+
+      @price_all = @postage.to_i + @cart_items_price #請求額
       @residence_type = params[:order][:residence_type]
       case @residence_type
       when "customer_residence"
@@ -25,7 +25,7 @@ class Public::OrdersController < ApplicationController
         unless params[:order][:registered_residence_id] == ""
           selected = Residence.find(params[:order][:registered_Residence_id])
           @selected_residence = selected.post_code + " " + selected.residence + " " + selected.name
-        else 
+        else
            render :new
         end
       when "new_residence"
@@ -34,8 +34,8 @@ class Public::OrdersController < ApplicationController
       	else
       	  render :new
       	end
-      end    
-     
+      end
+
   end
 
   def thanks
@@ -48,10 +48,10 @@ class Public::OrdersController < ApplicationController
       @cart_items = CartItem.where(customer_id: current_customer.id)
       ary = []
       @cart_items.each do |cart_item|
-        ary << cart_item.item.price*cart_item.quantity
+        ary << (cart_item.item.excluding_tax * 1.10).floor * cart_item.quantity
       end
       @cart_items_price = ary.sum
-      @order.price_all = @order.postage + @cart_items_price
+      @order.price_all = @order.postage.to_i + @cart_items_price
       @order.payment_method = params[:order][:payment_method]
       if @order.payment_method == "credit_card"
         @order.status = 1
@@ -62,7 +62,7 @@ class Public::OrdersController < ApplicationController
       case residence_type
         when "customer_residence"
           @order.post_code = current_customer.post_code
-          @order.residence = current_custmoer.residence
+          @order.residence = current_customer.address
           @order.name = current_customer.family_name + current_customer.first_name
         when "registered_residence"
           Residence.find(params[:order][:registered_residence_id])
@@ -75,24 +75,24 @@ class Public::OrdersController < ApplicationController
           @order.residence = params[:order][:new_residence]
           @order.name = params[:order][:new_name]
       end
-    
+
     if @order.save
       if @order.status == 0
         @cart_items.each do |cart_item|
-          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 0)
+          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: (cart_item.item.excluding_tax * 1.10).floor, quantity: cart_item.quantity, production_status: 0)
         end
       else
         @cart_items.each do |cart_item|
-          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: cart_item.item.price, quantity: cart_item.quantity, making_status: 1)
+          OrderDetail.create!(order_id: @order.id, item_id: cart_item.item.id, price: (cart_item.item.excluding_tax * 1.10).floor, quantity: cart_item.quantity, production_status: 1)
         end
       end
       @cart_items.destroy_all
-      redirect_to order_orders_thanks_path
+      redirect_to orders_thanks_orders_path
     else
       render :items
     end
-  end    
-    
+  end
+
 
   def index
     @orders = current_customer.orders
