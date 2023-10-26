@@ -26,22 +26,24 @@ Rails.application.routes.draw do
 
   scope module: :public do
    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-   
+
    resources :orders, only: [:new, :create, :index, :show] do
-    get 'orders/confirm'
-    get 'orders/thanks'
-   end    
+    collection do
+     get 'orders/confirm'
+     get 'orders/thanks'
+    end
+   end
 
    resources :cart_items, only: [:index, :update, :destroy, :create] do
     collection do
      delete 'destroy_all'
     end
-   end    
+   end
 
    resources :customers, only: [:show, :edit, :update] do
     get 'customers/leave'
     get 'customers/withdraw'
-   end    
+   end
 
    resources :items, only: [:index, :show]
 

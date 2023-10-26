@@ -16,12 +16,16 @@
       </tr>
       <tr>
         <td>支払い方法</td>
-        <td><%= @order.pay_method_i18n %></td>
+            <% if @order.payment_method_i18n == true %>
+              <td>クレジットカード</td>
+            <% else @order.payment_method_i18n != true %>
+              <td>銀行振込</td>
+            <% end %>
+      </tr>
       </tr>
       <tr>
         <td>ステータス</td>
         <td><%= @order.status_i18n %></td>
-      </tr>
     </table>
 
     <h4>請求情報</h4>
@@ -51,9 +55,9 @@
       <% @order_details.each do |order_detail| %>
         <tr>
           <td><%= order_detail.item.name %></td>
-          <td><%= order_detail.item.price %></td>
+          <td><%= (order_detail.item.excluding_tax * 1.10).floor %></td>
           <td><%= order_detail.quantity %></td>
-          <td><%= order_detail.quantity * order_detail.item.price %></td>
+          <td><%= order_detail.quantity * (order_detail.item.excluding_tax * 1.10).floor %></td>
         </tr>
       <% end %>
     </table>

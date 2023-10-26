@@ -16,9 +16,9 @@
             <%= image_tag cart_item.item.image, size: "100x80" %>
             <strong><%= cart_item.item.name %></strong>
           </td>
-          <td><%= cart_item.item.price %></td>
+          <td><%= (cart_item.item.excluding_tax * 1.10).floor.to_s(:delimited) %></td>
           <td><%= cart_item.quantity %></td>
-          <td><%= cart_item.item.price*cart_item.quantity %></td>
+          <td><%= ((cart_item.item.excluding_tax * 1.10).floor * cart_item.quantity).to_s(:delimited) %></td>
         </tr>
       <% end %>
     </table>
@@ -30,11 +30,11 @@
       </tr>
       <tr>
         <td>商品合計</td>
-        <td><%= @cart_items_price %></td>
+        <td><%= @cart_items_price.to_s(:delimited) %></td>
       </tr>
       <tr>
         <td>請求額</td>
-        <td><%= @price_all %></td>
+        <td><%= @price_all.to_s(:delimited) %></td>
       </tr>
     </table>
 
@@ -65,6 +65,6 @@
     <% end %>
   </div>
 
-  
+
   </div>
 </div>
