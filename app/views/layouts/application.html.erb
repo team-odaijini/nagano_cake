@@ -17,7 +17,11 @@
         <div class="row">
           <ul class="navbar-nav ml-auto">
 
+
               <h2>Nagano_Cafe</h2>
+
+              <h2 class="border border-dark rounded "><%= link_to "Nagano_Cake",root_path %></h2>
+
 
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
@@ -47,7 +51,7 @@
                           <i class="fas fa-sign-out-alt">ログアウト</i>
                         <% end %>
                       </li>
-                      
+
 
                     <!--customersログイン時のヘッダー-->
                     <% elsif customer_signed_in? %>
