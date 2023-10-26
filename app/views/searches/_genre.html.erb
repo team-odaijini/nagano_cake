@@ -7,7 +7,7 @@
         
         <%= form_with url: genre_search_path, method: :get do |f| %>
         <% @genres.each do |genre| %>
-          <div class="b">
+          <div class="genre__index__menu">
             <div><%= link_to genre.name, genre_search_path(genre_id: genre.id), class: "genre__button", method: :get %></div>
           </div>
         <% end %>
@@ -19,21 +19,26 @@
 
 
 <style>
+.genre_search{
+    float: inline-start;
+}
  .genre__button{
    text-decoration: none;
   }
   .genre__index{
      display: inline-block;
      flex-direction: column;
-     padding: 2%;
-     margin: 2%;
+     padding: 13%;
+     margin: 15px;
+     width:150px;
+     height:300px;
      border: 4px solid #00bfff;
      border-style: dotted;
   }
   .genre__index a:visited{
       color: black;
   }
-  .b{
-      padding: 2%;
+  .genre__index__menu{
+      padding: 7% 0%;
   }
 </style>
