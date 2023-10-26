@@ -1,15 +1,18 @@
 
 <!--顧客側商品詳細ページ-->
+
 <%= render 'searches/genre.html.erb' %>
+
+<br>
 
 <div class="container">
   <div class="row">
 
-    <div class="col-lg-4">
-      <div><%= image_tag @item.get_image(300,300) %></div>
+    <div class="col-lg-6">
+      <div><%= image_tag @item.get_image(400,300) %></div>
     </div>
 
-    <div class="col-lg-8">
+    <div class="col-lg-6">
       <h2><b><%= @item.name %></b></h2>
       <p><%= @item.explanation %></p>
       <h4><big>¥ <%= @item.add_tax_excluding_tax.to_s(:dalimited) %></big><font size="3"> (税込)</font></h4>

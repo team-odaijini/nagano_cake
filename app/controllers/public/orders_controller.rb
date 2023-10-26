@@ -20,7 +20,7 @@ class Public::OrdersController < ApplicationController
       @residence_type = params[:order][:residence_type]
       case @residence_type
       when "customer_residence"
-        @selected_residence = current_customer.post_code + " " + current_customer.residence + " " + current_customer.family_name + current_customer.first_name
+        @selected_residence = current_customer.post_code + " " + current_customer.address + " " + current_customer.family_name + current_customer.first_name
       when "registered_residence"
         unless params[:order][:registered_residence_id] == ""
           selected = Residence.find(params[:order][:registered_Residence_id])
@@ -87,7 +87,7 @@ class Public::OrdersController < ApplicationController
         end
       end
       @cart_items.destroy_all
-      redirect_to order_orders_thanks _path
+      redirect_to order_orders_thanks_path
     else
       render :items
     end

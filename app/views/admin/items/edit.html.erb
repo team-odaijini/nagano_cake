@@ -1,7 +1,17 @@
-<h1>商品編集</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-10">
+      <br>
+      <h5><b>商品編集</b></h5>
+      <br>
+    </div>
+  </div>
 
-
-      <table>
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+      <table class="table">
         <%= form_with model: @item, url:admin_item_path(@item.id), method: :patch do |f| %> <!--ここでのpathは表示するページではなく、updateアクションのcontrollerでデータの保存をする処理に飛んでいる-->
         <tr>
           <td>商品画像</td>
@@ -32,7 +42,13 @@
               <%= f.label :is_sale_status, "販売停止中", {value: :false} %></td>
         </tr>
         <tr>
-          <td><%= f.submit '変更を保存' %></td>
+          <td></td>
+          <td><%= f.submit '変更を保存', class: 'btn btn-success' %></td>
         </tr>
         <% end %>
       </table>
+    </div>
+    <div class="col-lg-2"></div>
+
+  </div>
+</div>

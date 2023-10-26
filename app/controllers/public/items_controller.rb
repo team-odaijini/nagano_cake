@@ -1,7 +1,10 @@
 class Public::ItemsController < ApplicationController
   def index
+
     @items = Item.all
     @genres = Genre.all
+    @items = Item.where(is_sale_status:true)#is_sale_statusがtrue=販売中の商品のみ一覧で並べる
+
   end
 
   def show
