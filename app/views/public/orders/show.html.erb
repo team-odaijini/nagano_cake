@@ -16,9 +16,9 @@
       </tr>
       <tr>
         <td>支払い方法</td>
-            <% if @order.payment_method_i18n == true %>
+            <% if @order.payment_method == "credit_card" %>
               <td>クレジットカード</td>
-            <% else @order.payment_method_i18n != true %>
+            <% else @order.payment_method != "credit_card" %>
               <td>銀行振込</td>
             <% end %>
       </tr>

@@ -23,7 +23,7 @@ class Public::OrdersController < ApplicationController
         @selected_residence = current_customer.post_code + " " + current_customer.address + " " + current_customer.family_name + current_customer.first_name
       when "registered_residence"
         unless params[:order][:registered_residence_id] == ""
-          selected = Residence.find(params[:order][:registered_Residence_id])
+          selected = Address.find(params[:order][:registered_residence_id])
           @selected_residence = selected.post_code + " " + selected.residence + " " + selected.name
         else
            render :new
@@ -65,8 +65,8 @@ class Public::OrdersController < ApplicationController
           @order.residence = current_customer.address
           @order.name = current_customer.family_name + current_customer.first_name
         when "registered_residence"
-          Residence.find(params[:order][:registered_residence_id])
-          selected = Residence.find(params[:order][:registered_residence_id])
+          Address.find(params[:order][:registered_residence_id])
+          selected = Address.find(params[:order][:registered_residence_id])
           @order.post_code = selected.post_code
           @order.residence = selected.residence
           @order.name = selected.name

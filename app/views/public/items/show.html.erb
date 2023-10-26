@@ -18,7 +18,7 @@
       <h4><big>¥ <%= @item.add_tax_excluding_tax.to_s(:dalimited) %></big><font size="3"> (税込)</font></h4>
 
       <%= form_with model: @cart_item, url: cart_items_path do |f| %>
-      <span><%= f.select :quantity, *[1..10], class: 'item' %></span>
+      <span><%= f.select :quantity, *[1..99], class: 'item' %></span>
       <%= f.hidden_field :item_id, :value => Item.find(params[:id]).id %>
       <span><%= f.submit 'カートに入れる', class: 'btn btn-success btn-sm' %></span>
       <% end %>
