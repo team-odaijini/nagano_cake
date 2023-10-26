@@ -1,17 +1,23 @@
-<div class="genre__title">
-  <p class="genre__title__text">ジャンル編集</p>
-</div>
-<div class="edit-genre-form">
-<%= form_with model: @genre, url: admin_genre_path, method: :patch do |f| %>
- <%= f.label :"ジャンル名",class:"genre__create__title" %>
- <%= f.text_field :name %>
- <%= f.submit "変更を保存", class: "genre__create__button" %>
-<% end %>
+<div class="all">
+  <div class="genre__title">
+    <p class="genre__title__text">ジャンル編集</p>
   </div>
+  <div class="edit-genre-form">
+   <%= form_with model: @genre, url: admin_genre_path, method: :patch do |f| %>
+    <%= f.label :"ジャンル名",class:"genre__create__title" %>
+    <%= f.text_field :name %>
+    <%= f.submit "変更を保存", class: "genre__create__button" %>
+   <% end %>
+　</div>
 </div>
+
 
 
  <style>
+  .all{
+  width:400px;
+  margin:0 auto;
+ }
  .genre__title{
      width: 30%;
      background-color: antiquewhite;
