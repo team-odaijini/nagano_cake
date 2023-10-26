@@ -1,3 +1,4 @@
+<%= render 'searches/genre.html.erb' %>
 <div class="container">
   <div class="row">
     <div class=col-lg-3>
@@ -8,7 +9,6 @@
     <br>
     
     <div class="row">
-        <%= render 'searches/genre.html.erb' %>
       <% @items.each do |item| %>
     
        <div class="col-lg-3">
@@ -17,7 +17,7 @@
            <%= link_to item_path(item.id),class:"item__name" do %>
            <%= image_tag item.get_image(200,200) %>
            <% end %>
-          </div>
+         </div>
          
          <div class="mb-1"><b><%= item.name %></b></div>
          <div class="mb-1"><b>¥<%= item.add_tax_excluding_tax.to_s(:dalimited) %></b></div>
