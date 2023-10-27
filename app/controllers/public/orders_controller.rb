@@ -51,7 +51,7 @@ class Public::OrdersController < ApplicationController
         ary << (cart_item.item.excluding_tax * 1.10).floor * cart_item.quantity
       end
       @cart_items_price = ary.sum
-      @order.price_all = @order.postage.to_i + @cart_items_price
+      @order.price_all = @cart_items_price
       @order.payment_method = params[:order][:payment_method]
       if @order.payment_method == "credit_card"
         @order.status = 1
