@@ -8,6 +8,10 @@ class Customer < ApplicationRecord
          has_many :orders
          has_many :addresses
          
+         def  active_for_authentication?
+            super && (is_deleted == false)
+         end
+         
          #validates :family_name, presence: true
          #validates :family_name_kana, presence: true
          #validates :first_name, presence: true
