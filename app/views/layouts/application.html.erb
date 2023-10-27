@@ -17,9 +17,9 @@
         <div class="row">
           <ul class="navbar-nav ml-auto">
 
-
-
-              <h2 class="border border-dark rounded "><%= link_to "Nagano_Cake",root_path %></h2>
+　
+              
+            <h2 class="border border-dark rounded "><%= link_to "Nagano_Cake",root_path %></h2>
 
 
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -50,7 +50,6 @@
                           <i class="fas fa-sign-out-alt">ログアウト</i>
                         <% end %>
                       </li>
-
 
                     <!--customersログイン時のヘッダー-->
                     <% elsif customer_signed_in? %>
@@ -102,11 +101,6 @@
                     <% end %>
               </div>
             </ul>
-          </div>
-          <div class="col-3"><br><br><br><br>
-             <%= form_with method: :get, local: :ture do |f| %>
-             <%= f.text_field :search, placeholder: "Click to search", size: "19" %>
-            <% end %>
           </div>
         </div>
       </nav>
