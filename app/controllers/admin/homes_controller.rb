@@ -1,5 +1,5 @@
 class Admin::HomesController < ApplicationController
   def top
-    @admins_orders = Order.page(params[:page]).reverse_order
+    @order = current_customer.orders
   end
 end

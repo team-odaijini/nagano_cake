@@ -1,25 +1,28 @@
+<h2>注文履歴一覧</h2>
+
 <div class="container">
-  <h1>注文一覧画面</h1>
-     <table class="table">
-        <thead>
-          <tr>
-            <th>購入日時</th>
-            <th>購入者</th>
-            <th>注文個数</th>
-            <th>注文ステータス</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @admins_orders.each do |p| %>
-           <tr>
-            <td><%= link_to p.purchase_date.strftime("%Y-%m-%d %H:%M"), admins_order_path(p.id), data: {"turbolinks" => false}  %></td>
-            <td><%= p.user.family_name_kanji %><%= p.user.first_name_kanji %></td>
-            <td><%= p.user.email  %></td>
-            <td><%= p.order_status_i18n  %></td>
-           </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  <%= paginate @admins_orders, class: "paginate" %>
-</div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>購入日時</th>
+        <th>購入者</th>
+        <th>注文個数</th>
+        <th>注文ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+  <% @order.each do |order| %>
+    <tr>
+      <td><%= order.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+      <td><%= order.customer.family_name %><%= order.customer.first_name %></td>
+      <td><%= order.customer.cart_items.sum(:quantity) %></td>
+      <td>
+        <%= form_with model: order, url: admin_homes_top_path(order), method: :patch do |f| %>
+        <%= f.select :status, Order.statuses, class: "form-control" %>
+        <!--%= f.submit "更新", class: "btn btn-primary" %>-->
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+ </tbody>
+</table>
