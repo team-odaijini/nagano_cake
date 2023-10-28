@@ -53,11 +53,7 @@ class Public::OrdersController < ApplicationController
       @cart_items_price = ary.sum
       @order.price_all = @cart_items_price
       @order.payment_method = params[:order][:payment_method]
-      if @order.payment_method == "credit_card"
-        @order.status = 1
-      else
-        @order.status = 0
-      end
+      @order.status = 0
        residence_type = params[:order][:residence_type]
       case residence_type
         when "customer_residence"
