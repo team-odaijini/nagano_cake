@@ -1,69 +1,71 @@
-<div class="container">
-  <h1>注文詳細画面</h1>
-    <div class="row">
-      <div class="col-md-2">
-        <h3><strong>購入者</strong></h3>
-        <h3><strong>配送先</strong></h3>
-        <h3><strong>支払方法</strong></h3>
-      </div>
-      <div class="col-md-10">
-        <h3><%= @user.family_name_kanji %><%= @user.first_name_kanji %></h3>
-        <h3><%= @admins_order.destination_address %></h3>
-        <h3><%= @admins_order.payment_method_i18n %></h3>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-8">
-        <%= form_for @admins_order, :url => { :controller => :orders, :action => :update } do |f| %>
-          <% if @admins_order.errors.any? %>
-            <div id="error_explanation" class="alert alert-danger">
-              <h3><%= @admins_order.errors.count %>error prohibited this obj from being saved:</h3>
-                <ul>
-                 <% @admins_order.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-                 <% end %>
-                </ul>
-            </div>
-          <% end %>
-          <h3>注文ステータス   <%= f.select :order_status, Order.order_statuses_i18n.keys.map { |k| [Order.order_statuses_i18n[k], k]} %>
-          <%= f.submit '更新', class: "btn btn-primary" %>
-          </h3>
-        <% end %>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>商品名</th>
-              <th>単価（税込）</th>
-              <th>数量</th>
-              <th>小計</th>
-              <th>制作ステータス</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @order_products.each do |p| %>
-             <tr>
-              <td><%= p.product.product_name  %></td>
-              <td><%= p.tax_included %></td>
-              <td><%= p.number  %></td>
-              <td><%= p.tax_included * p.number  %></td>
-              <%= form_for(p, url: admins_order_product_path(p.id)) do |f| %>
-                <td><%= f.select :production_status, OrderProduct.production_statuses_i18n.keys.map { |k| [OrderProduct.production_statuses_i18n[k], k]} %></td>
-                <td><%= f.submit '更新', class: "btn btn-primary" %></td>
-              <% end %>
-             </tr>
+
+<h3>注文履歴詳細</h3>
+
+<table class="table">
+      <tr>
+        <td>購入者</td>
+        <td><%= @order.name %></td>
+      </tr>
+      <tr>
+        <td>注文日</td>
+        <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+      </tr>
+      <tr>
+        <td>配送先</td>
+        <td>〒<%= @order.post_code + "　" + @order.residence + "　" + @order.name %></td>
+      </tr>
+      <tr>
+        <td>支払い方法</td>
+            <% if @order.payment_method == "credit_card" %>
+              <td>クレジットカード</td>
+            <% else @order.payment_method != "credit_card" %>
+              <td>銀行振込</td>
             <% end %>
-          </tbody>
-        </table>
-      </div>
-      <div class="col-md-2">
-        <h3>商品合計</h3>
-        <h3>送料</h3>
-        <h3>請求金額合計</h3>
-      </div>
-      <div class="col-md-2">
-        <h3><%= @admins_order.price_all - @admins_order.postage %>円</h3>
-        <h3><%= @admins_order.postage %>円</h3>
-        <h3><%= @admins_order.price_all %>円</h3>
-      </div>
-    </div>
-</div>
+      </tr>
+      </tr>
+      <tr>
+        <td>注文ステータス</td>
+        <td><%= form_with model: @order, url: update_status_admin_order_path(@order), method: :patch do |f| %>
+          <%= f.select :status, Order.statuses, class: "form-control" %>
+          <%= f.submit "更新", class: "btn btn-primary" %>
+          <% end %></td>
+    </table>
+    
+     <table class="table">
+      <tr>
+        <td>商品名</td>
+        <td>単価(税込)</td>
+        <td>数量</td>
+        <td>小計</td>
+        <td>製作ステータス</td>
+      </tr>
+      <% @order_details.each do |order_detail| %>
+      <tr>
+      <td><%= order_detail.item.name %></td>
+      <td><%= (order_detail.item.excluding_tax * 1.10).floor %></td>
+      <td><%= order_detail.quantity %></td>
+      <td><%= order_detail.quantity * (order_detail.item.excluding_tax * 1.10).floor %></td>
+      <td><%= form_with model: order_detail, url: admin_order_details_update_path(order_detail.id), method: :patch do |f| %>
+          <%= f.select :production_status, OrderDetail.production_statuses %>
+          <%= f.submit "更新", class: "btn btn-primary" %>
+          <% end %>
+      </td>
+    </tr>
+    <% end %>
+    </table>
+    
+    <table class="table">
+      <tr>
+        <td>商品合計</td>
+        <td><%= @order.price_all %></td>
+      </tr>
+      <tr>
+        <td>配送料</td>
+        <td><%= @order.postage %></td>
+      </tr>
+      <tr>
+        <td>ご請求額</td>
+        <td><%= @order.price_all + @order.postage %></td>
+      </tr>
+    </table>
+
