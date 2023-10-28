@@ -1,22 +1,25 @@
 
 <!--顧客側商品詳細ページ-->
-
-<%= render 'searches/genre.html.erb' %>
-
 <br>
 
 <div class="container">
   <div class="row">
-
-    <div class="col-lg-6">
-      <div><%= image_tag @item.get_image(400,300) %></div>
+    
+    <div class="col-lg-3">
+      <%= render 'searches/genre.html.erb' %>
+    </div>
+    
+    <div class="col-lg-4">
+      <br>
+      <div><%= image_tag @item.get_image(350,250) %></div>
     </div>
 
-    <div class="col-lg-6">
+    <div class="col-lg-5">
+      <br>
       <h2><b><%= @item.name %></b></h2>
       <p><%= @item.explanation %></p>
       <h4><big>¥ <%= @item.add_tax_excluding_tax.to_s(:dalimited) %></big><font size="3"> (税込)</font></h4>
-
+      <br>
       <%= form_with model: @cart_item, url: cart_items_path do |f| %>
       <span><%= f.select :quantity, *[1..99], class: 'item' %></span>
       <%= f.hidden_field :item_id, :value => Item.find(params[:id]).id %>
