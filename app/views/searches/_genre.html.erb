@@ -1,10 +1,10 @@
 <div class="genre_search">
 
-     <div  class="genre__index">   
+     <div  class="genre__index">
         <div>
             <div>ジャンル検索</div>
         </div>
-        
+
         <%= form_with url: genre_search_path, method: :get do |f| %>
         <% @genres.each do |genre| %>
           <div class="genre__index__menu">
@@ -12,9 +12,9 @@
           </div>
         <% end %>
       <% end %>
-     </div>  
+     </div>
 
-    
+
 </div>
 
 
@@ -28,7 +28,7 @@
   .genre__index{
      display: inline-block;
      flex-direction: column;
-     padding: 13%;
+     padding: 3%;
      margin: 15px;
      width:150px;
      height:300px;
