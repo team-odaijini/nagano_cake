@@ -1,0 +1,57 @@
+
+
+<div class=container>
+  <br>
+  <div class="row">
+    <div class="col-lg-3">
+      <%= render 'searches/genre.html.erb' %>
+    </div>
+    <div class="col-lg-6 text-center bg-light d-flex align-items-center justify-content-center">
+    <b>ようこそ、ながのCAKEへ！<br>
+    このサイトは、ケーキ販売のECサイトになります。<br>
+    会員ではない方も商品の閲覧はできますが、<br>
+    購入には会員登録が必要になります。</b><br>
+    </div>
+    <div class="col-lg-3"></div>
+  </div>
+  <br>
+
+</div>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+      <div class="col-lg-3">
+        <h2>新着商品</h2>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <% @items.each do |item| %>
+      <div class="col-lg-2 mb-2">
+        <div class="mb-2"><%= link_to item_path(item.id) do %>
+             <%= image_tag item.get_image(160,100) %>
+             <% end %></div>
+        <div class="mb-1"><%= item.name %></div>
+        <div class="mb-1">¥<%= item.add_tax_excluding_tax.to_s(:dalimited) %></div>
+      </div>
+    <% end %>
+
+  </div>
+
+    <div class="text-right"><%= link_to "全ての商品を見る>", items_path %></div>
+
+</div>
+
+
+
+
+<style>
+.a{
+  text-decoration: none;
+}
+
+row-1{
+  background-image: image-url('nagano.jpg');
+}
+</style>

@@ -1,0 +1,35 @@
+
+<!--会員側商品一覧ページ-->
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <%= render 'searches/genre.html.erb' %>
+    </div>
+    <div class="col-lg-9">
+      <h2><b>商品一覧</b></h2>
+      <span>(全<%= @item.count %>件)</span>
+      <br></br>
+        <div class="row">
+          <% @items.each do |item| %>
+            <div class="col-lg-3">
+              <div class="mb-2"><%= link_to item_path(item.id) do %>
+                   <%= image_tag item.get_image(180,140) %>
+                   <% end %>
+              </div>
+              <div class="mb-1"><b><%=item.name %></b></div>
+              <div class="mb-1"><b>¥ <%= item.add_tax_excluding_tax.to_s(:dalimited) %></b></div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+      <%= paginate @items %>
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>

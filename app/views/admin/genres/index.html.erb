@@ -1,0 +1,75 @@
+<div class="all">
+<section class="genre">
+   <div class="genre__title">
+    <p class="genre__title__text">ジャンル一覧・追加</p>
+  </div>
+  <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
+   <td><%= f.label :"ジャンル名" %></td>
+   <td><%= f.text_field :name, :placeholder => "ジャンル名" %></td>
+   <td><%= f.submit "新規登録", class: "genre__create__button"%></td>
+  <% end %>
+ 
+ 
+   <div class="col-xs-8 col-xs-offset-2">
+    <table class="table table-hover table-inverse table-bordered">
+      <div class="col-lg-4">    
+        <p>ジャンル<p>
+        <tr>
+         <% @genres.each do |genre| %>
+         <td class="genre__created__name"><%= genre.name %></td>
+         <td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: "edit_button" %></td>
+        </tr>
+        <% end %>
+      </table>
+     </div>    
+   </div>    
+  </div>
+ </section>
+
+ 
+ 
+ 
+ 
+ <style>
+ .all{
+  width:400px;
+  margin:0 auto;
+ }
+ .genre{
+     width: 150%;
+     margin: 0;
+     padding: 0;
+   }
+ .genre__title{
+     width: 30%;
+     background-color: antiquewhite;
+   }
+   
+   .genre__create__title{
+    text-align: center;
+   }
+   .genre__create__button{
+    background-color: white;
+    transition: 1.0s;
+    
+   }
+   .genre__create__button:hover{
+    background-color: black;
+    color: white;
+   }
+   .genre__created__name{
+    margin: 100px;
+    height: 35px;
+   }
+   .edit_button{
+    padding: 3px 8px ;
+    border-radius: 5px;
+    background-color: #3399FF;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    border: 2px dotted;
+   }
+   
+   
+ </style>

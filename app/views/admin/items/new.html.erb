@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-10">
+      <br>
+      <h5><b>商品新規登録</b></h5>
+      <br>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+      <table class="table">
+        <%= form_with model: @item, url:admin_items_path do |f| %> <!--ここでのpathは表示するページではなく、createアクションのcontrollerでデータの保存をする処理に飛んでいる-->
+        <tr>
+          <td>商品画像</td>
+          <td><%= f.file_field :image, accept: "image/*" %></td>
+        </tr>
+        <tr>
+          <td>商品名</td>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <td>商品説明</td>
+          <td><%= f.text_area :explanation %></td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+          <td><%= f.select :genre_id, @genres.map { |genre| [genre.name, genre.id] },
+            { include_blank: '--選択してください--'} %></td>
+        </tr>
+        <tr>
+          <td>税抜価格</td>
+          <td><%= f.text_field :excluding_tax %>円</td>
+        </tr>
+        <tr>
+          <td>販売ステータス</td>
+          <td><%= f.radio_button :is_sale_status, :true %>
+              <%= f.label :is_sale_status, "販売中", {value: :true} %>
+              <%= f.radio_button :is_sale_status, :false %>
+              <%= f.label :is_sale_status, "販売停止中", {value: :false} %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= f.submit '新規登録', class: 'btn btn-success' %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-lg-2"></div>
+
+  </div>
+</div>
