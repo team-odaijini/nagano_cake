@@ -8,15 +8,16 @@ class Admin::OrdersController < ApplicationController
      @order_details = @order.order_details
   end
 
-  def update
+  def update_status
     @order = Order.find(params[:id])
     if @order.update(order_params)
       flash[:notice] = "注文ステータスを更新しました"
-      redirect_to admin_orders_path
+      redirect_to admin_order_path
     else
       flash[:alert] = "注文ステータスの更新に失敗しました"
-      redirect_to admin_orders_path
+      redirect_to admin_order_path
     end
+    @order_detail = OrderDetail.find(params[:id])
   end
   
   private
