@@ -69,6 +69,12 @@
                   </li>
                 <% end %>
               </ul>
+               <div ciass="align-items-center" >
+                 <%= form_with method: :get, local: :ture do |f| %>
+                 <%= f.text_field :search, placeholder: "search" %>
+                 <%= f.submit "検索" %>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
