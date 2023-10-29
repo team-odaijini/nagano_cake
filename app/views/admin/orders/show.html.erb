@@ -45,7 +45,7 @@
       <td><%= (order_detail.item.excluding_tax * 1.10).floor %></td>
       <td><%= order_detail.quantity %></td>
       <td><%= order_detail.quantity * (order_detail.item.excluding_tax * 1.10).floor %></td>
-      <td><%= form_with model: order_detail, url: admin_order_details_update_path(order_detail.id), method: :patch do |f| %>
+      <td><%= form_with model: order_detail, url: admin_order_path(order_detail), method: :patch do |f| %>
           <%= f.select :production_status, OrderDetail.production_statuses_i18n, class: "form-control" %>
           <%= f.submit "更新", class: "btn btn-primary" %>
           <% end %>
